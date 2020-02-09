@@ -224,10 +224,10 @@ function subs(){
 
 	var first = Math.floor(Math.random() * mainTeam.length);
 	var second = Math.floor(Math.random() * reserveTeam.length);
-	var temp;
-	temp = mainTeam[first];
+	var smth;
+	smth = mainTeam[first];
 	mainTeam[first] = reserveTeam[second];
-	reserveTeam[second] = temp;
+	reserveTeam[second] = smth;
 
 	makeTeam();
 }
