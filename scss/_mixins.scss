@@ -1,0 +1,14 @@
+@mixin headlines(){
+	text-transform: uppercase;
+    font-size: 30px;
+    text-align: center;
+    color: #fff;
+    padding-bottom: 25px;
+    border-bottom: 3px solid #EDBB00;
+}
+
+@mixin sections(){
+	display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
