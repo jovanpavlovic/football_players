@@ -1,7 +1,8 @@
-var footballTeam = {
+const footballTeam = {
 	logo : "./img/logo.png",
 	clubName : "FC Barcelona Line-Up",
 	players: [
+
 		{
 			imageUrl : './img/messi.png',
 			firstName : "Leo",
@@ -125,94 +126,97 @@ var footballTeam = {
 	]
 };
 
-var a = document.createElement("a");
-var mainLogo = document.createElement("img");
+const a = document.createElement("a");
+const mainLogo = document.createElement("img");
 a.setAttribute("href", "#")
 mainLogo.setAttribute("src", footballTeam.logo);
 mainLogo.setAttribute("alt", "logoImg");
 a.appendChild(mainLogo);
-var head = document.querySelector("header");
+const head = document.querySelector("header");
 head.appendChild(a);
 
-var mainField = document.querySelector("main");
-var firstSectionHead = document.createElement("h1");
+const mainField = document.querySelector("main");
+const firstSectionHead = document.createElement("h1");
 firstSectionHead.textContent = footballTeam.clubName;
 mainField.prepend(firstSectionHead);
 
-var firstSection = document.createElement("section");
+const firstSection = document.createElement("section");
 firstSection.setAttribute("id","line-up");
 firstSectionHead.after(firstSection);
 
-var secondSectionHead = document.createElement("h2");
+const secondSectionHead = document.createElement("h2");
 secondSectionHead.textContent = "Substitutions";
 firstSection.after(secondSectionHead);
 
-var secondSection = document.createElement("section");
+const secondSection = document.createElement("section");
 secondSection.setAttribute("class","sub-p");
 secondSectionHead.after(secondSection);
 
+const lineUp = () => {
 
-function lineUp(){
-
-	var num = [];
-	var i = 0;
+	const num = [];
+	let i = 0;
 	while(num.length < 11){
-		var randVal = Math.floor(Math.random()*footballTeam.players.length);
+		const randVal = Math.floor(Math.random()*footballTeam.players.length);
 		if(!num.includes(randVal)){
 			num[i] = randVal;
 			i++;
 		}
 	}
 
-	return num;
+	 return num;
 }
 
-function sub (arr) {
-	var subs = [];
-	var j = 0;
+const sub  = arr => {
+	const subs = [];
+	let j = 0;
 
-	for (var i = 0; i < footballTeam.players.length; i++) {
+	for (let i = 0; i < footballTeam.players.length; i++) {
 		if (!arr.includes(i)) {
 			subs[j] = i;
 			j++;
 		}
 	}
-	return subs;
+	 return subs;
 }
 
-var mainTeam = lineUp();
-var reserveTeam = sub (mainTeam);
+const mainTeam = lineUp();
+const reserveTeam = sub (mainTeam);
 
-function makeTeam(){
+const makeTeam = () => {
 
 	firstSection.innerHTML = "";
 	secondSection.innerHTML = "";
 
-	for (var i = 0; i < mainTeam.length; i++) {
+	for (let i = 0; i < mainTeam.length; i++) {
+
+		const {imageUrl, firstName, lastName, position, number, age} = footballTeam.players[mainTeam[i]];
 
 		firstSection.innerHTML +=
-		"<article>"+
-		"<img src=" + footballTeam.players[mainTeam[i]].imageUrl + " alt= 'playerImg'>"+
-		"<span>First Name: " + footballTeam.players[mainTeam[i]].firstName + "</span>"+
-		"<span>Last name: " + footballTeam.players[mainTeam[i]].lastName + "</span>"+
-		"<span>Position: " + footballTeam.players[mainTeam[i]].position + "</span>"+
-		"<span class='num'>Number: " + footballTeam.players[mainTeam[i]].number + "</span>"+
-		"<span>Age: " + footballTeam.players[mainTeam[i]].age + "</span>"
-		+ "</article>";
+		`<article>
+		<img src="${imageUrl}">
+		<span>First Name: ${firstName}</span>
+		<span>Last name: ${lastName}</span>
+		<span>Position: ${position}</span>
+		<span class='num'>Number: ${number}</span>
+		<span>Age: ${age}</span>
+		</article>`;
 
 	}
 
-	for (var i = 0; i < reserveTeam.length; i++) {
+	for (let i = 0; i < reserveTeam.length; i++) {
+
+		const {imageUrl, firstName, lastName, position, number, age} = footballTeam.players[reserveTeam[i]];
 
 		secondSection.innerHTML +=
-		"<article>"+
-		"<img src=" + footballTeam.players[reserveTeam[i]].imageUrl + " alt= 'playerImg'>"+
-		"<span>Name:" + footballTeam.players[reserveTeam[i]].firstName + "</span>"+
-		"<span>Last name:" + footballTeam.players[reserveTeam[i]].lastName + "</span>"+
-		"<span class='num'>Number:" + footballTeam.players[reserveTeam[i]].number + "</span>"+
-		"<span>Position:" + footballTeam.players[reserveTeam[i]].position + "</span>"+
-		"<span>Age:" + footballTeam.players[reserveTeam[i]].age + "</span>"
-		+"</article>";
+		`<article>
+		<img src="${imageUrl}">
+		<span>First Name: ${firstName}</span>
+		<span>Last name: ${lastName}</span>
+		<span>Position: ${position}</span>
+		<span class='num'>Number: ${number}</span>
+		<span>Age: ${age}</span>
+		</article>`;
 
 	}
 
@@ -220,28 +224,16 @@ function makeTeam(){
 
 makeTeam();
 
-function subs(){
+ const subs = () => {
 
 	var first = Math.floor(Math.random() * mainTeam.length);
 	var second = Math.floor(Math.random() * reserveTeam.length);
-	var temp;
-	temp = mainTeam[first];
+	var smth;
+	smth = mainTeam[first];
 	mainTeam[first] = reserveTeam[second];
-	reserveTeam[second] = temp;
+	reserveTeam[second] = smth;
 
 	makeTeam();
 }
 
-setInterval(()=>subs(),10000);
-
-//use of arrow function:
-
-// hi = function() {
-//   return "Hi!";
-// }
-
-// ===
-
-// hi = () => {
-//   return "Hi!";
-// }
+setInterval(()=>subs(),5000);

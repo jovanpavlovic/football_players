@@ -31,6 +31,9 @@ main section#line-up {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around; }
+  main section#line-up article:hover {
+    background-color: #004D98;
+    cursor: pointer; }
 
 main section.sub-p {
   margin-bottom: 50px;

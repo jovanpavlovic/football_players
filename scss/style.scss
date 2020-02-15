@@ -23,8 +23,6 @@ header a img {
   margin: 0 auto;
   display: block;
   height: 80px;
-  // -webkit-filter: drop-shadow(0.7px 0.7px 0.7px #fff);
-  // filter: drop-shadow(0.7px 0.7px 0.7px #fff);
 }
 
 main h1,h2 {
@@ -33,6 +31,11 @@ main h1,h2 {
 
 main section#line-up {
     @include sections();
+
+    article:hover{
+      background-color:#004D98;
+      cursor: pointer;
+    }
 }
 
 main section.sub-p {
@@ -41,6 +44,7 @@ main section.sub-p {
 
     article {
    background-color: #004D98;
+
   }
 }
 
@@ -51,7 +55,7 @@ main section article {
     margin: 10px;
     position: relative;
 
-     img {
+    img {
       display: block;
       margin: 14px auto;
       height: 200px;
